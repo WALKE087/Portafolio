@@ -1,0 +1,122 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<div class="gap-4 mb-2">
+  <img
+    src="/SobreMi.jpg"
+    alt="Yerson Garcia"
+    class="rounded-full shadow-lg size-56 items-center flex mx-auto"
+  />
+  <div class="flex items-center w-full justify-center p-4">
+    <h1 class="text-white font-bold text-4xl">Yerson Garcia Campo</h1>
+  </div>
+</div>
+<div>
+  <div
+    class="flex items-center justify-center mx-auto text-white text-2xl mt-3 p-0"
+  >
+    <p>
+      <strong>Estudiante de Ingeniería de Sistemas</strong>, Enfocado en
+      Desarrollo Web. <strong>+6 meses de experiencia</strong> de trabajo en
+      <strong>front-end y back-end</strong>.
+    </p>
+  </div>
+  <div
+    class="flex flex-col md:flex-row items-center mt-10 space-y-4 md:space-y-0 md:space-x-4"
+  >
+    <!-- 1 boton -->
+    <span
+      class="relative inline-flex overflow-hidden rounded-full p-[1px] hover:scale-105 transition-transform duration-300"
+    >
+      <!-- Borde animado -->
+      <span
+        class="absolute inset-[-1000%] animate-spin bg-[conic-gradient(from_90deg_at_50%_50%,#111111_0%,#21554E_50%,#51E4B8_100%)]"
+      ></span>
+      <!-- Contenido del botón -->
+      <div
+        class="inline-flex items-center justify-center w-full px-3 py-1 text-sm text-green-800 bg-green-100 rounded-full cursor-pointer dark:bg-slate-700 dark:text-white/80 backdrop-blur-3xl whitespace-nowrap"
+      >
+        <Icon name="listo" class="w-5 h-5 mr-2" />
+        Disponible para trabajar
+      </div>
+    </span>
+
+    <!-- 2 boton -->
+    <a
+      href="mailto:Yersoncampo79@gmail.com"
+      class="relative inline-flex overflow-hidden rounded-full p-[1px] hover:scale-105 transition-transform duration-300"
+    >
+      <!-- Borde animado -->
+      <span
+        class="absolute inset-[-1000%] animate-spin bg-[conic-gradient(from_90deg_at_50%_50%,#111111_0%,#21554E_50%,#51E4B8_100%)]"
+      ></span>
+      <!-- Contenido del botón -->
+      <div
+        class="inline-flex items-center justify-center w-full px-3 py-1 text-sm text-green-800 bg-green-100 rounded-full cursor-pointer dark:bg-slate-700 dark:text-white/80 backdrop-blur-3xl whitespace-nowrap"
+      >
+        <Icon name="gmail" class="w-5 h-5 mr-2" />
+        Contáctame
+      </div>
+    </a>
+    <!-- 3 boton -->
+    <a
+      href="https://github.com/WALKE087"
+      target="_blank"
+      class="relative inline-flex overflow-hidden rounded-full p-[1px] hover:scale-105 transition-transform duration-300"
+    >
+      <!-- Borde animado -->
+      <span
+        class="absolute inset-[-1000%] animate-spin bg-[conic-gradient(from_90deg_at_50%_50%,#111111_0%,#21554E_50%,#51E4B8_100%)]"
+      ></span>
+      <!-- Contenido del botón -->
+      <div
+        class="inline-flex items-center justify-center w-full px-3 py-1 text-sm text-green-800 bg-green-100 rounded-full cursor-pointer dark:bg-slate-700 dark:text-white/80 backdrop-blur-3xl whitespace-nowrap"
+      >
+        <Icon name="github" class="w-5 h-5 mr-2" />
+        GitHub
+      </div>
+    </a>
+  </div>
+</div>
+
+<style>
+  h1 {
+    background: linear-gradient(
+      to right,
+      #ffffff,
+      #ffffff,
+      #48cae4,
+      #90e0ef,
+      #45ffd0
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: backgroundAnimation 4s linear infinite;
+    font-family: "Sanchez", serif;
+  }
+
+  @keyframes backgroundAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 100% 50%;
+    }
+  }
+  strong {
+    color: #fce667;
+  }
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  .animate-spin {
+    animation: spin 4s linear infinite;
+  }
+</style>

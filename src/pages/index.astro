@@ -1,0 +1,227 @@
+---
+import Certificado from "../components/certificado.astro";
+import Experiencia from "../components/experiencia.astro";
+import Informacion from "../components/informacion.astro";
+import Proyectos from "../components/proyectos.astro";
+import Sobremi from "../components/sobremi.astro";
+import Tecnologias from "../components/tecnologias.astro";
+import Layout from "../layouts/Layout.astro";
+import "@fontsource/sanchez";
+---
+
+<!-- Portafolio  -->
+<Layout title="Yerson Garcia">
+  <header
+    class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto mt-4"
+  >
+    <nav
+      class="flex flex-wrap items-center justify-center px-3 text-sm font-semibold rounded-full text-gray-600 dark:text-gray-200 bg-[rgba(19,10,40,0.75)]"
+    >
+      <a
+        id="experienciaLink"
+        class="relative block px-2 py-2 transition hover:text-blue-500 dark:hover:text-blue-500"
+        aria-label="Experiencia"
+        href="#experiencia"
+      >
+        Experiencia
+      </a>
+      <a
+        id="tecnologiasLink"
+        class="relative block px-2 py-2 transition hover:text-blue-500 dark:hover:text-blue-500"
+        aria-label="Tecnologías"
+        href="#tecnologias"
+      >
+        Tecnologías
+      </a>
+      <!-- <a
+        id="proyectosLink"
+        class="relative block px-2 py-2 transition hover:text-blue-500 dark:hover:text-blue-500"
+        aria-label="Proyectos"
+        href="#proyectos"
+      >
+        Proyectos
+      </a> -->
+      <a
+        id="certificadoLink"
+        class="relative block px-2 py-2 transition hover:text-blue-500 dark:hover:text-blue-500"
+        aria-label="Certificado"
+        href="#certificado"
+      >
+        Certificado
+      </a>
+      <a
+        id="sobreMiLink"
+        class="relative block px-2 py-2 transition hover:text-blue-500 dark:hover:text-blue-500"
+        aria-label="Sobre mí"
+        href="#sobre-mi"
+      >
+        Sobre mí
+      </a>
+    </nav>
+  </header>
+</Layout>
+<main class="px-4">
+  <!-- area de Introduccion -->
+  <section
+    class="section pt-36 scroll-m-20 w-full mx-auto container lg:max-w-4xl md:max-w-2xl"
+  >
+    <Informacion />
+  </section>
+
+  <!-- area de experiencia -->
+  <section
+    id="experiencia"
+    class="section pt-36 scroll-m-20 w-full mx-auto container lg:max-w-4xl md:max-w-2xl"
+  >
+    <Experiencia />
+  </section>
+  <!-- area de tecnologias -->
+  <section
+    id="tecnologias"
+    class="section md:py-28 scroll-m-20 w-full mx-auto container lg:max-w-4xl md:max-w-2xl"
+  >
+    <Tecnologias />
+  </section>
+  <!-- area de proyectos -->
+  <!-- <section
+    id="proyectos"
+    class="section md:py-36 scroll-m-20 w-full mx-auto container lg:max-w-4xl md:max-w-2xl"
+  >
+    <Proyectos />
+  </section> -->
+  <!-- area de certificados -->
+  <section
+    id="certificado"
+    class="section md:py-28 scroll-m-20 w-full mx-auto container lg:max-w-4xl md:max-w-2xl"
+  >
+    <Certificado />
+  </section>
+  <!-- area sobre mi -->
+  <section
+    id="sobre-mi"
+    class="section md:py-36 scroll-m-20 w-full mx-auto container lg:max-w-4xl md:max-w-2xl"
+  >
+    <Sobremi />
+  </section>
+</main>
+<footer
+  class="opacity-80 m-4 min-[375px]:pl-4 md:pl-0 mt-16 w-full mx-auto container lg:max-w-4xl md:max-w-2xl mb-10 flex justify-center"
+>
+  <div
+    class="rounded-lg w-full max-w-screen-xl mx-auto md:flex md:items-center md:justify-between py-4"
+  >
+    <span
+      class="text-sm sm:text-center text-zinc-800/90 dark:text-zinc-200/90 justify-end"
+      >2025 Yerson Garcia.</span
+    >
+  </div>
+</footer>
+
+<script>
+  // Desplazamiento suave
+  const experienciaLink = document.getElementById("experienciaLink");
+  const tecnologiasLink = document.getElementById("tecnologiasLink");
+  const proyectosLink = document.getElementById("proyectosLink");
+  const sobreMiLink = document.getElementById("sobreMiLink");
+  const contactoLink = document.getElementById("contactoLink");
+  const certificadoLink = document.getElementById("certificadoLink");
+
+  const addSmoothScroll = (linkId: any, sectionId: any, offset = 0) => {
+    const link = document.getElementById(linkId);
+    const target = document.getElementById(sectionId);
+
+    if (link && target) {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        const targetPosition = target.offsetTop - offset;
+
+        window.scrollTo({
+          top: targetPosition,
+          behavior: "smooth",
+        });
+      });
+    }
+  };
+
+  addSmoothScroll("experienciaLink", "experiencia", -20);
+  addSmoothScroll("tecnologiasLink", "tecnologias", -20);
+  addSmoothScroll("proyectosLink", "proyectos", -20);
+  addSmoothScroll("sobreMiLink", "sobre-mi", -20);
+  addSmoothScroll("contactoLink", "contacto", -20);
+  addSmoothScroll("certificadoLink", "certificado", -20);
+
+  const sections = [
+    document.getElementById("experiencia"),
+    document.getElementById("tecnologias"),
+    document.getElementById("proyectos"),
+    document.getElementById("sobre-mi"),
+    document.getElementById("contacto"),
+    document.getElementById("certificado"),
+  ];
+
+  const navLinks = [
+    experienciaLink,
+    tecnologiasLink,
+    proyectosLink,
+    sobreMiLink,
+    contactoLink,
+    certificadoLink,
+  ];
+
+  window.addEventListener("scroll", () => {
+    let currentSection = "";
+
+    sections.forEach((section) => {
+      if (section) {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        if (
+          window.scrollY >= sectionTop - 10 &&
+          window.scrollY < sectionTop + sectionHeight - 10
+        ) {
+          currentSection = section.id;
+        }
+      }
+    });
+
+    navLinks.forEach((link) => {
+      if (link) {
+        link.classList.remove("text-blue-500");
+        if (link.getAttribute("href") === `#${currentSection}`) {
+          link.classList.add("text-blue-500");
+        }
+      }
+    });
+  });
+</script>
+
+<style>
+  h1 {
+    background: linear-gradient(
+      to right,
+      #ffffff,
+      #ffffff,
+      #48cae4,
+      #90e0ef,
+      #45ffd0
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: backgroundAnimation 4s linear infinite;
+    font-family: "Sanchez", serif;
+  }
+
+  @keyframes backgroundAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 100% 50%;
+    }
+  }
+  strong {
+    color: #fce667;
+  }
+</style>

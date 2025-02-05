@@ -1,0 +1,131 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<h2
+  class="flex items-center mb-6 text-3xl font-semibold gap-x-3 text-black/80 dark:text-white"
+>
+  <Icon name="certificado" class="w-8 h-8" />
+  Certificado
+</h2>
+<div
+  id="certificados-container"
+  class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+>
+  <!-- Las cards se generarán dinámicamente aquí -->
+</div>
+
+<!-- Modal Previsualización PDF -->
+<div
+  id="preview-modal"
+  class="fixed inset-0 z-50 hidden bg-gray-900 bg-opacity-50 flex items-center justify-center"
+>
+  <div class="bg-white rounded-lg max-w-4xl w-full p-4 relative">
+    <button
+      id="close-modal"
+      class="absolute top-2 right-2 text-gray-900 hover:text-gray-900"
+      aria-label="Cerrar"
+    >
+      &times;
+    </button>
+    <object id="pdf-preview" class="w-full h-96" type="application/pdf" data="">
+      <!-- En caso de que el navegador no soporte el PDF, mostrar mensaje alternativo -->
+      <p>
+        Tu navegador no soporta la previsualización de PDF. Por favor, descarga
+        el archivo para verlo.
+      </p>
+    </object>
+  </div>
+</div>
+
+<script>
+  fetch("/certificados.json")
+    .then((response) => response.json())
+    .then((certificados) => {
+      const certificadosContainer = document.getElementById(
+        "certificados-container"
+      );
+
+      certificados.forEach((certificado: any) => {
+        const card = document.createElement("div");
+        card.classList.add(
+          "max-w-sm",
+          "bg-white",
+          "border",
+          "border-gray-200",
+          "rounded-lg",
+          "shadow-sm",
+          "dark:bg-gray-800",
+          "dark:border-gray-700",
+          "w-full"
+        );
+
+        card.innerHTML = `
+          <a href="#" class="block rounded-t-lg overflow-hidden relative opacity-50 transition-opacity duration-300 hover:opacity-100">
+            <embed src="${certificado.ruta}" type="application/pdf" class="w-full h-56 object-contain" />
+          </a>
+          <div class="p-2">
+            <a href="#">
+              <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">${certificado.nombre}</h5>
+            </a>
+            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Emitido el: ${certificado.fecha}</p>
+            <button
+              class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-900 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              data-pdf="${certificado.ruta}"
+            >
+              Previsualizar PDF
+              <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+              </svg>
+            </button>
+          </div>
+        `;
+
+        if (certificadosContainer) {
+          certificadosContainer.appendChild(card);
+        } else {
+          console.error("El contenedor de certificados no se encontró.");
+        }
+      });
+
+      // Lógica para abrir el modal de previsualización
+      const previewButtons = document.querySelectorAll("button[data-pdf]");
+      const modal = document.getElementById("preview-modal");
+      const pdfPreview = document.getElementById("pdf-preview");
+      const closeModalButton = document.getElementById("close-modal");
+
+      previewButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const pdfUrl = button.getAttribute("data-pdf");
+          if (pdfPreview && pdfUrl) {
+            (pdfPreview as HTMLObjectElement).data = `${pdfUrl}#toolbar=0`;
+            if (modal) {
+              modal.classList.remove("hidden");
+            }
+          }
+        });
+      });
+
+      closeModalButton?.addEventListener("click", () => {
+        if (modal) {
+          modal.classList.add("hidden");
+        }
+        if (pdfPreview) {
+          (pdfPreview as HTMLObjectElement).data = "";
+        }
+      });
+
+      // Lógica para cerrar el modal al hacer clic fuera de él
+      modal?.addEventListener("click", (event) => {
+        if (event.target === modal) {
+          modal.classList.add("hidden");
+          if (pdfPreview) {
+            (pdfPreview as HTMLObjectElement).data = "";
+          }
+        }
+      });
+    })
+    .catch((error) =>
+      console.error("Error al cargar los certificados:", error)
+    );
+</script>

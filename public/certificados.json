@@ -1,0 +1,38 @@
+[
+  {
+    "nombre": "Introduction to Data Science",
+    "fecha": "6/4/23",
+    "nombreArchivo": "dataciencia",
+    "ruta": "/Certificados/dataciencia.pdf"
+  },
+  {
+    "nombre": "English for IT 1",
+    "fecha": "10/27/23",
+    "nombreArchivo": "Ingles1",
+    "ruta": "/Certificados/Ingles1.pdf"
+  },
+  {
+    "nombre": "English for IT 2",
+    "fecha": "10/27/23",
+    "nombreArchivo": "inglesh2",
+    "ruta": "/Certificados/inglesh2.pdf"
+  },
+  {
+    "nombre": "Data Analytics Essentials",
+    "fecha": "10/27/23",
+    "nombreArchivo": "analiticadatos",
+    "ruta": "/Certificados/analiticadatos.pdf"
+  },
+  {
+    "nombre": "Introduction to Networks",
+    "fecha": "6/1/24",
+    "nombreArchivo": "introduccionaredes",
+    "ruta": "/Certificados/introduccionaredes.pdf"
+  },
+  {
+    "nombre": "Introduction to Cybersecurity",
+    "fecha": "11/28/24",
+    "nombreArchivo": "cibersegurity",
+    "ruta": "/Certificados/cibersegurity.pdf"
+  }
+]
